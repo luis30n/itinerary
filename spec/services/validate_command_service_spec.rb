@@ -58,7 +58,7 @@ RSpec.describe ValidateCommandService do
     context 'when file_path is nil' do
       let(:file_path) { nil }
 
-      it 'returns an error message' do        
+      it 'returns an error message' do
         expect(validate_command_service.errors).to include(ValidateCommandService::MISSING_FILE_PATH_ERROR)
       end
     end
