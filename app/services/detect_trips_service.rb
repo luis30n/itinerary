@@ -19,7 +19,7 @@ class DetectTripsService
   private
 
   def build_trip(transport)
-    trip = Trip.new(segments: [transport])
+    trip = Trip.new(origin: based_at, segments: [transport])
 
     next_segment = transport
 
@@ -29,17 +29,16 @@ class DetectTripsService
 
       trip.segments << next_segment
 
-      break if next_segment.segment_kind == :transport && final_transport?(next_segment)
+      break if next_segment.transport? && final_transport?(next_segment)
     end
 
     trip
   end
 
   def find_next_segment(current_segment)
-    case current_segment.segment_kind
-    when :stay
+    if current_segment.stay?
       find_stay_connection(current_segment) || find_transport_after_stay(current_segment)
-    when :transport
+    elsif current_segment.transport?
       find_transport_connection(current_segment) || find_stay_after_transport(current_segment)
     end
   end

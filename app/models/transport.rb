@@ -17,6 +17,14 @@ class Transport
     departure_at.to_date
   end
 
+  def stay?
+    false
+  end
+
+  def transport?
+    true
+  end
+
   def segment_kind
     :transport
   end

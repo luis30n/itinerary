@@ -9,6 +9,10 @@ RSpec.describe ValidateCommandService do
   let(:based_at) { 'BCN' }
 
   describe '#valid?' do
+    before do
+      allow(File).to receive(:exist?).with(file_path).and_return(true)
+    end
+
     context 'when file_path and based_at are valid' do
       it 'returns true' do
         expect(validate_command_service.valid?).to be true
@@ -17,6 +21,16 @@ RSpec.describe ValidateCommandService do
 
     context 'when file_path is nil' do
       let(:file_path) { nil }
+
+      it 'returns false' do
+        expect(validate_command_service.valid?).to be false
+      end
+    end
+
+    context 'when the file is not in the provided path' do
+      before do
+        allow(File).to receive(:exist?).with(file_path).and_return(false)
+      end
 
       it 'returns false' do
         expect(validate_command_service.valid?).to be false
@@ -49,6 +63,10 @@ RSpec.describe ValidateCommandService do
   end
 
   describe '#errors' do
+    before do
+      allow(File).to receive(:exist?).with(file_path).and_return(true)
+    end
+
     context 'when file_path and based_at are valid' do
       it 'returns true' do
         expect(validate_command_service.errors).to eq([])
@@ -60,6 +78,16 @@ RSpec.describe ValidateCommandService do
 
       it 'returns an error message' do
         expect(validate_command_service.errors).to include(ValidateCommandService::MISSING_FILE_PATH_ERROR)
+      end
+    end
+
+    context 'when the file is not in the provided path' do
+      before do
+        allow(File).to receive(:exist?).with(file_path).and_return(false)
+      end
+
+      it 'returns an error message' do
+        expect(validate_command_service.errors).to include(ValidateCommandService::INVALID_FILE_PATH)
       end
     end
 

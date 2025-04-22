@@ -16,7 +16,11 @@ class Stay
     arrival_date
   end
 
-  def segment_kind
-    :stay
+  def stay?
+    true
+  end
+
+  def transport?
+    false
   end
 end

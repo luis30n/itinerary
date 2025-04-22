@@ -7,14 +7,12 @@ class LoadSegmentsService
   class FileNotFoundError < StandardError; end
   class UnsupportedSegmentError < StandardError; end
 
-  Segments = Struct.new(:stays, :transports, keyword_init: true)
-
   private attr_reader :lines
-  private attr_accessor :segments
+  private attr_accessor :segment_collection
 
   def initialize(lines:)
     @lines = lines
-    @segments = Segments.new(stays: [], transports: [])
+    @segment_collection = SegmentCollection.new(stays: [], transports: [])
   end
 
   def call
@@ -31,7 +29,7 @@ class LoadSegmentsService
       load_stay(line) if Stay::TYPES.include?(segment_type)
     end
 
-    segments
+    segment_collection
   end
 
   private
@@ -43,11 +41,11 @@ class LoadSegmentsService
 
   def load_transport(line)
     transport = TransportParser.new(line:).parse!
-    segments.transports << transport
+    segment_collection.transports << transport
   end
 
   def load_stay(line)
     stay = StayParser.new(line:).parse!
-    segments.stays << stay
+    segment_collection.stays << stay
   end
 end
