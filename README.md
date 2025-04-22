@@ -33,4 +33,7 @@ Before building and running the app with Docker, ensure you have the following i
     ```
     to get the desired output for this technical challenge.
     If you want to run the app with a different input file, replace `input.txt` with the path to your desired input file.
-    For example, you may try `complex_input.txt` to see how the app handles more complex scenarios.
+    For example, you may try `complex_input.txt` to see how the app handles more complex scenarios as:
+    ```
+    docker run --rm -e BASED=MAD itinerary-app bundle exec ruby main.rb complex_input.txt
+    ```
