@@ -1,0 +1,12 @@
+TRIP to ROM
+Flight from MAD to ROM at 2023-04-01 10:00 to 11:30
+Hotel at ROM on 2023-04-01 to 2023-04-04
+Hotel at ROM on 2023-04-04 to 2023-04-07
+Flight from ROM to MAD at 2023-04-07 12:00 to 13:30
+
+TRIP to BRU
+Train from MAD to BCN at 2023-05-01 08:00 to 10:30
+Flight from BCN to PAR at 2023-05-01 13:00 to 15:00
+Train from PAR to BRU at 2023-05-02 10:00 to 12:30
+Hotel at BRU on 2023-05-02 to 2023-05-05
+Flight from BRU to MAD at 2023-05-05 18:00 to 21:00

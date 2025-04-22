@@ -24,8 +24,4 @@ class Transport
   def transport?
     true
   end
-
-  def segment_kind
-    :transport
-  end
 end
