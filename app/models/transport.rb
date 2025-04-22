@@ -5,11 +5,19 @@ class Transport
 
   attr_reader :type, :origin, :destination, :arrival_at, :departure_at
 
-  def initialize(type:, origin:, destination:, arrival_at:, departure_at:)
+  def initialize(type:, origin:, destination:, departure_at:, arrival_at:)
     @type = type
     @origin = origin
     @destination = destination
-    @arrival_at = arrival_at
     @departure_at = departure_at
+    @arrival_at = arrival_at
+  end
+
+  def start_date
+    departure_at.to_date
+  end
+
+  def segment_kind
+    :transport
   end
 end

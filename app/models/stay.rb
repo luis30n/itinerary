@@ -11,4 +11,12 @@ class Stay
     @departure_date = departure_date
     @type = type
   end
+
+  def start_date
+    arrival_date
+  end
+
+  def segment_kind
+    :stay
+  end
 end

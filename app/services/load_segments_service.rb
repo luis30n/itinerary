@@ -7,14 +7,14 @@ class LoadSegmentsService
   class FileNotFoundError < StandardError; end
   class UnsupportedSegmentError < StandardError; end
 
-  Segments = Struct.new(:stays, :transports)
+  Segments = Struct.new(:stays, :transports, keyword_init: true)
 
   private attr_reader :lines
   private attr_accessor :segments
 
   def initialize(lines:)
     @lines = lines
-    @segments = Segments.new([], [])
+    @segments = Segments.new(stays: [], transports: [])
   end
 
   def call

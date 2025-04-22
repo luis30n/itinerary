@@ -20,3 +20,8 @@ validate_command(file_path, based_at)
 
 lines = File.readlines(file_path).map(&:strip)
 segments = LoadSegmentsService.new(lines:).call
+trips = DetectTripsService.new(
+  stays: segments.stays,
+  transports: segments.transports,
+  based_at:
+).call
