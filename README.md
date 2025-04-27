@@ -7,12 +7,6 @@ This repository contains a production‑ready Ruby application that processes a 
 4. Serialize the resulting trips to human‑readable format.
 5. Output the result to the console.
 
-## Considerations
-- Connections have been extended to be chained and support trains as well as flights, following the same 24h maximum time difference rule.
-- Stays can be connected to other stays as well, depending on their date of arrival and departure.
-
-
-
 ## Prerequisites
 
 Before building and running the app with Docker, ensure you have the following installed:
@@ -37,3 +31,11 @@ Before building and running the app with Docker, ensure you have the following i
     ```
     docker run --rm -e BASED=MAD itinerary-app bundle exec ruby main.rb complex_input.txt
     ```
+
+## Considerations
+- I have assumed that other transportation types such as trains are subject to the same rules as flights, with a maximum time difference of 24 hours for connections.
+- More than one chained connection is allowed, as long as the time difference is within 24 hours.
+- Stays can be connected to other stays, depending on their date of arrival and departure dates.
+- There are some edge cases that are not handled, such as:
+  - If a transport's start date is early in the morning so that the stay's departure date is the day before, such transport will not be connected to the stay.
+  - If a transport's arrival date is late in the evening so that the stay's start date is the morning after, such stay will not be connected to the transport.
